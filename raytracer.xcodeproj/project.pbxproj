@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB802D831D08E9E80071BBB2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BB802D821D08E9E80071BBB2 /* main.c */; };
+		BB802D831D08E9E80071BBB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB802D821D08E9E80071BBB2 /* main.m */; };
+		BB802D8C1D08EF990071BBB2 /* raytrace.c in Sources */ = {isa = PBXBuildFile; fileRef = BB802D8B1D08EF990071BBB2 /* raytrace.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,11 @@
 
 /* Begin PBXFileReference section */
 		BB802D7F1D08E9E80071BBB2 /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB802D821D08E9E80071BBB2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		BB802D821D08E9E80071BBB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BB802D891D08EA0B0071BBB2 /* vec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vec.h; sourceTree = "<group>"; };
+		BB802D8A1D08EF270071BBB2 /* raytrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = raytrace.h; sourceTree = "<group>"; };
+		BB802D8B1D08EF990071BBB2 /* raytrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raytrace.c; sourceTree = "<group>"; };
+		BB802D8D1D08F07B0071BBB2 /* scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +62,11 @@
 		BB802D811D08E9E80071BBB2 /* raytracer */ = {
 			isa = PBXGroup;
 			children = (
-				BB802D821D08E9E80071BBB2 /* main.c */,
+				BB802D821D08E9E80071BBB2 /* main.m */,
+				BB802D891D08EA0B0071BBB2 /* vec.h */,
+				BB802D8A1D08EF270071BBB2 /* raytrace.h */,
+				BB802D8B1D08EF990071BBB2 /* raytrace.c */,
+				BB802D8D1D08F07B0071BBB2 /* scene.h */,
 			);
 			path = raytracer;
 			sourceTree = "<group>";
@@ -118,7 +127,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB802D831D08E9E80071BBB2 /* main.c in Sources */,
+				BB802D8C1D08EF990071BBB2 /* raytrace.c in Sources */,
+				BB802D831D08E9E80071BBB2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +249,7 @@
 				BB802D881D08E9E80071BBB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
