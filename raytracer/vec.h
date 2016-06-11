@@ -6,10 +6,10 @@
 //  Copyright © 2016 Theodore Dubois. All rights reserved.
 //
 
-#include <math.h>
-
 #ifndef vec_h
 #define vec_h
+
+#include <math.h>
 
 #pragma mark Definitions
 

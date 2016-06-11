@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #include "raytrace.h"
-#include "scene.h"
 
 int main(int argc, const char * argv[]) {
     struct scene s;
@@ -19,12 +18,26 @@ int main(int argc, const char * argv[]) {
     s.camera.eye = vec3f(0, 0, 1);
     s.camera.up = vec3f(0, 1, 0);
     
-    void *framebuffer = malloc(s.width * s.height * sizeof(struct color));
-    raytrace(&s, framebuffer);
+    struct object sphere;
+    sphere.intersect = intersect_sphere;
+    sphere.sphere.radius = 1;
+    sphere.sphere.center = vec3f(0, 0, 2);
+    
+    struct object objects[] = {sphere};
+    s.objects = objects;
+    s.objects_count = 1;
+    
+    init_raytracer(&s);
+    struct color framebuffer[s.width][s.height];
+    for (int y = 0; y < s.height; y++) {
+        for (int x = 0; x < s.width; x++) {
+            framebuffer[x][y] = raytrace_pixel(x, y, &s);
+        }
+    }
     
     @autoreleasepool {
         [NSApplication sharedApplication];
-        unsigned char *planes[] = {framebuffer};
+        unsigned char *planes[] = {(void *) framebuffer};
         NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:planes
                                                                         pixelsWide:s.width
                                                                         pixelsHigh:s.height

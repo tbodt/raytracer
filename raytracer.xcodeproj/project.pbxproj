@@ -29,7 +29,6 @@
 		BB802D891D08EA0B0071BBB2 /* vec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vec.h; sourceTree = "<group>"; };
 		BB802D8A1D08EF270071BBB2 /* raytrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = raytrace.h; sourceTree = "<group>"; };
 		BB802D8B1D08EF990071BBB2 /* raytrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raytrace.c; sourceTree = "<group>"; };
-		BB802D8D1D08F07B0071BBB2 /* scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +63,8 @@
 			children = (
 				BB802D821D08E9E80071BBB2 /* main.m */,
 				BB802D891D08EA0B0071BBB2 /* vec.h */,
-				BB802D8A1D08EF270071BBB2 /* raytrace.h */,
 				BB802D8B1D08EF990071BBB2 /* raytrace.c */,
-				BB802D8D1D08F07B0071BBB2 /* scene.h */,
+				BB802D8A1D08EF270071BBB2 /* raytrace.h */,
 			);
 			path = raytracer;
 			sourceTree = "<group>";
