@@ -19,16 +19,37 @@ typedef struct _vec2 {
 } vec2;
 
 typedef struct _vec3 {
-    float x;
-    float y;
-    float z;
+    union {
+        float x;
+        float r;
+    };
+    union {
+        float y;
+        float g;
+    };
+    union {
+        float z;
+        float b;
+    };
 } vec3;
 
 typedef struct _vec4 {
-    float x;
-    float y;
-    float z;
-    float w;
+    union {
+        float x;
+        float r;
+    };
+    union {
+        float y;
+        float g;
+    };
+    union {
+        float z;
+        float b;
+    };
+    union {
+        float w;
+        float a;
+    };
 } vec4;
 
 #pragma mark Constructors
@@ -53,6 +74,15 @@ static inline vec4 vec4f(float x, float y, float z, float w) {
     vec.x = x;
     vec.y = y;
     vec.z = z;
+    vec.w = w;
+    return vec;
+}
+
+static inline vec4 vec4v3f(vec3 v, float w) {
+    vec4 vec;
+    vec.x = v.x;
+    vec.y = v.y;
+    vec.z = v.z;
     vec.w = w;
     return vec;
 }

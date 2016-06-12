@@ -23,9 +23,11 @@ struct scene {
         float fov;
     } camera;
     
-    // objects
     struct object *objects;
     unsigned int objects_count;
+    
+    struct light *lights;
+    unsigned int lights_count;
     
     // stuff computed before raytracing
     struct {
@@ -36,7 +38,6 @@ struct scene {
         vec3 sideways;
         vec3 upward;
     };
-    // more to come
 };
 
 struct ray {
@@ -53,15 +54,26 @@ struct object {
             float radius;
         } sphere;
     };
+    
+    vec3 ambient_color;
+    vec3 diffuse_color;
+    
     intersect_t intersect;
 };
 
+struct light {
+    vec3 position;
+    
+    vec3 ambient_color;
+    vec3 diffuse_color;
+};
+
 struct intersection {
+    vec3 point;
     float distance;
-    struct {
-        vec3 point;
-        struct object object;
-    } computed;
+    vec3 normal;
+    
+    struct object object;
 };
 
 struct color {
@@ -73,7 +85,7 @@ struct color {
 };
 
 void init_raytracer(struct scene *s);
-struct color raytrace_pixel(int x, int y, struct scene *s);
+vec4 raytrace_pixel(int x, int y, struct scene *s);
 
 // intersection functions
 struct intersection intersect_sphere(struct object obj, struct ray r, struct scene *s);

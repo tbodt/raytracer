@@ -12,26 +12,24 @@
 
 static struct ray ray_through_pixel(int x, int y, struct scene *s);
 static struct intersection find_intersection(struct ray r, struct scene *s);
+static vec4 compute_lighting(struct intersection i, struct scene *s);
 
 void init_raytracer(struct scene *s) {
     // all these formulas assume the distance from the camera to the plane is 1
     // it really doesn't matter
     float fovy = (float)s->camera.fov * M_PI / 180; // convert to radians
-    s->half_plane_width = tanf(fovy/2);
-    s->half_plane_height = s->half_plane_width * (float)s->width / (float)s->height;
+    s->half_plane_height = tanf(fovy/2);
+    s->half_plane_width = s->half_plane_height * (float)s->width / (float)s->height;
     
     s->forward = normalize3v(sub3v(s->camera.eye, s->camera.pos));
-    s->sideways = normalize3v(cross(s->forward, s->camera.up));
+    s->sideways = normalize3v(cross(s->camera.up, s->forward));
     s->upward = cross(s->forward, s->sideways);
 }
 
-struct color raytrace_pixel(int x, int y, struct scene *s) {
+vec4 raytrace_pixel(int x, int y, struct scene *s) {
     struct ray r = ray_through_pixel(x, y, s);
     struct intersection i = find_intersection(r, s);
-    if (i.distance == INFINITY)
-        return (struct color) {0,0,0,255};
-    else
-        return (struct color) {255,255,255,255};
+    return compute_lighting(i, s);
 }
 
 static struct ray ray_through_pixel(int x, int y, struct scene *s) {
@@ -51,10 +49,28 @@ static struct intersection find_intersection(struct ray r, struct scene *s) {
         struct intersection intersection = obj.intersect(obj, r, s);
         if (intersection.distance < closest.distance) {
             closest = intersection;
-            closest.computed.object = obj;
+            closest.object = obj;
         }
     }
     return closest;
+}
+
+static vec4 compute_lighting(struct intersection isect, struct scene *s) {
+    vec4 color = vec4f(0, 0, 0, 0);
+    
+    if (isect.distance == INFINITY)
+        return color;
+    
+    for (int i = 0; i < s->lights_count; i++) {
+        struct light light = s->lights[i];
+        
+        vec3 light_dir = normalize3v(sub3v(light.position, isect.point));
+        float diffuse_num = fmaxf(dot3v(isect.normal, light_dir), 0);
+        vec4 diffuse_color = vec4v3f(mulf3v(diffuse_num, light.diffuse_color), 1);
+        color = add4v(color, diffuse_color);
+    }
+    
+    return color;
 }
 
 struct intersection intersect_sphere(struct object obj, struct ray r, struct scene *s) {
@@ -72,12 +88,13 @@ struct intersection intersect_sphere(struct object obj, struct ray r, struct sce
     
     float x1 = (-b + sqrtf(dsc)) / 2;
     float x2 = (-b - sqrtf(dsc)) / 2;
-    float x = fminf(fmaxf(x1, 0), fmaxf(x2, 0));
-    
-    if (x == 0) {
-        x = INFINITY;
-    }
-    i.distance = x;
+    if (x1 < 0)
+        x1 = INFINITY;
+    if (x2 < 0)
+        x2 = INFINITY;
+            
+    i.distance = fminf(x1, x2);
+    i.point = add3v(r.origin, mulf3v(i.distance, r.direction));
+    i.normal = normalize3v(sub3v(i.point, obj.sphere.center));
     return i;
 }
-

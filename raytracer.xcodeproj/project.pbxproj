@@ -63,8 +63,8 @@
 			children = (
 				BB802D821D08E9E80071BBB2 /* main.m */,
 				BB802D891D08EA0B0071BBB2 /* vec.h */,
-				BB802D8B1D08EF990071BBB2 /* raytrace.c */,
 				BB802D8A1D08EF270071BBB2 /* raytrace.h */,
+				BB802D8B1D08EF990071BBB2 /* raytrace.c */,
 			);
 			path = raytracer;
 			sourceTree = "<group>";
