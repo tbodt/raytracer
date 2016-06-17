@@ -10,6 +10,7 @@
 #define raytrace_h
 
 #include "vec.h"
+#include "mat.h"
 
 struct scene {
     int width;
@@ -22,6 +23,8 @@ struct scene {
         vec3 up;
         float fov;
     } camera;
+    
+    vec3 ambient;
     
     struct object *objects;
     unsigned int objects_count;
@@ -53,7 +56,14 @@ struct object {
             vec3 center;
             float radius;
         } sphere;
+        struct triangle {
+            vec3 a;
+            vec3 b;
+            vec3 c;
+        } triangle;
     };
+    
+    mat4 transform;
     
     vec3 ambient_color;
     vec3 diffuse_color;
@@ -64,7 +74,6 @@ struct object {
 struct light {
     vec3 position;
     
-    vec3 ambient_color;
     vec3 diffuse_color;
 };
 
@@ -89,5 +98,6 @@ vec4 raytrace_pixel(int x, int y, struct scene *s);
 
 // intersection functions
 struct intersection intersect_sphere(struct object obj, struct ray r, struct scene *s);
+struct intersection intersect_triangle(struct object obj, struct ray r, struct scene *s);
 
 #endif /* raytrace_h */

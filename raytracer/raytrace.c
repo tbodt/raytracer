@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "raytrace.h"
+#include "vec_util.h"
 
 static struct ray ray_through_pixel(int x, int y, struct scene *s);
 static struct intersection find_intersection(struct ray r, struct scene *s);
@@ -46,6 +47,8 @@ static struct intersection find_intersection(struct ray r, struct scene *s) {
     closest.distance = INFINITY;
     for (int i = 0; i < s->objects_count; i++) {
         struct object obj = s->objects[i];
+        struct ray rt = r;
+        rt.origin = dehomogenize(mul4mv(obj.transform, homogenize(r.origin)));
         struct intersection intersection = obj.intersect(obj, r, s);
         if (intersection.distance < closest.distance) {
             closest = intersection;
@@ -56,21 +59,26 @@ static struct intersection find_intersection(struct ray r, struct scene *s) {
 }
 
 static vec4 compute_lighting(struct intersection isect, struct scene *s) {
-    vec4 color = vec4f(0, 0, 0, 0);
+    vec3 color = vec3f(0, 0, 0);
     
     if (isect.distance == INFINITY)
-        return color;
+        return vec4f(0, 0, 0, 1);
+    
+    vec3 ambient_color = mul3v3v(s->ambient, isect.object.ambient_color);
+    color = add3v(color, ambient_color);
     
     for (int i = 0; i < s->lights_count; i++) {
         struct light light = s->lights[i];
         
         vec3 light_dir = normalize3v(sub3v(light.position, isect.point));
+        if (dot3v(isect.normal, light_dir) != 0)
+            printf("dot product is %f\n", dot3v(isect.normal, light_dir));
         float diffuse_num = fmaxf(dot3v(isect.normal, light_dir), 0);
-        vec4 diffuse_color = vec4v3f(mulf3v(diffuse_num, light.diffuse_color), 1);
-        color = add4v(color, diffuse_color);
+        vec3 diffuse_color = mulf3v(diffuse_num, mul3v3v(light.diffuse_color, isect.object.diffuse_color));
+        color = add3v(color, diffuse_color);
     }
     
-    return color;
+    return vec4v3f(color, 1);
 }
 
 struct intersection intersect_sphere(struct object obj, struct ray r, struct scene *s) {
@@ -96,5 +104,54 @@ struct intersection intersect_sphere(struct object obj, struct ray r, struct sce
     i.distance = fminf(x1, x2);
     i.point = add3v(r.origin, mulf3v(i.distance, r.direction));
     i.normal = normalize3v(sub3v(i.point, obj.sphere.center));
+    return i;
+}
+
+// möller-trumbore
+// pratically copy-pasted from wikipedia
+#define EPSILON 0.0001
+struct intersection intersect_triangle(struct object obj, struct ray r, struct scene *s) {
+    struct intersection i;
+    
+    vec3 a = obj.triangle.a;
+    vec3 b = obj.triangle.b;
+    vec3 c = obj.triangle.c;
+    
+    vec3 e1 = sub3v(b, a);
+    vec3 e2 = sub3v(c, a);
+    vec3 p = cross(r.direction, e2);
+    float det = dot3v(e1, p);
+    if (det > -EPSILON && det < EPSILON) {
+        i.distance = INFINITY;
+        return i;
+    }
+    
+    vec3 t = sub3v(r.origin, a);
+    
+    float u = dot3v(t, p) / det;
+    if (u < 0 || u > 1) {
+        i.distance = INFINITY;
+        return i;
+    }
+    
+    vec3 q = cross(t, e1);
+    
+    float v = dot3v(r.direction, q) / det;
+    if (v < 0 || u + v > 1) {
+        i.distance = INFINITY;
+        return i;
+    }
+    
+    float distance = dot3v(e2, q) / det;
+    if (distance > EPSILON) {
+        i.distance = distance;
+        i.point = add3v(r.origin, mulf3v(i.distance, r.direction));
+        // it's useful to understand the math
+        if (det > 0)
+            i.normal = normalize3v(cross(e1, e2));
+        else
+            i.normal = normalize3v(cross(e2, e1));
+    }
+    
     return i;
 }

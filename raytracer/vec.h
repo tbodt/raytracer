@@ -163,6 +163,13 @@ static inline vec3 mul3vf(vec3 v, float c) {
     return v;
 }
 
+static inline vec3 mul3v3v(vec3 a, vec3 b) {
+    a.x *= b.x;
+    a.y *= b.y;
+    a.z *= b.z;
+    return a;
+}
+
 static inline vec4 mulf4v(float c, vec4 v) {
     v.x *= c;
     v.y *= c;
