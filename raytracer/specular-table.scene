@@ -3,9 +3,16 @@
 # I know it's not the most exciting of scenes...
 
 size 640 480 
-output raytrace2.png
+output scene4-specular.png
 
 camera 0 -4 4 0 -1 0 0 1 1 45
+
+point 1 1 3 1 1 1
+
+ambient 0 0 0
+diffuse 0 0 0
+shininess 20
+emission 0 0 0
 
 
 maxverts 8
@@ -27,10 +34,10 @@ pushTransform
 # instancing to make this simpler.  Alternatively, define a ray-cube 
 # intersection test.
 
-ambient .7 .7 1
+specular .6 .6 .5
 
 scale 2 1 .25
-tri 0 1 5
+tri 0 1 5 
 tri 0 5 4 
 tri 3 7 6
 tri 3 6 2
@@ -49,9 +56,9 @@ pushTransform
 # Now, I draw the 4 legs of the table.
 # Note that like OpenGL, commands right-multiply
 
-ambient .7 .7 .4
+specular .6 .6 .4
 
-translate -1.75 -.8 -.25
+translate -1.75 -.8 -.25 
 translate 0 0 -2.0 
 scale 0.15 0.15 2.0 
 tri 0 1 5 
@@ -130,7 +137,7 @@ tri 4 6 7
 
 # Now draw the spheres
 
-ambient 0 1 0 
+specular 0 0.7 0 
 popTransform
 pushTransform 
 translate  0 0 0.5
@@ -138,7 +145,7 @@ rotate 0 0 1 45
 scale 1.0 0.25 0.25 
 sphere 0 0 0 1
 
-ambient 1 0 0
+specular 0.7 0 0
 popTransform
 pushTransform 
 translate  0 0 0.5
@@ -146,28 +153,28 @@ rotate 0 0 1 -45
 scale 1.0 0.25 0.25 
 sphere 0 0 0 1
 
-ambient 0 1 1 
+specular 0 0.7 0.7
 popTransform
 pushTransform
 translate -1.5 -.8 0.65
 scale 0.4 0.4 0.4
 sphere 0 0 0 1
 
-ambient 0 1 1 
+specular 0 0.7 0.7
 popTransform
 pushTransform
 translate 1.5 -.8 0.65
 scale 0.4 0.4 0.4
 sphere 0 0 0 1
 
-ambient 0 1 1 
+specular 0 0.7 0.7
 popTransform
 pushTransform
 translate 1.5 .8 0.65
 scale 0.4 0.4 0.4
 sphere 0 0 0 1
 
-ambient 0 1 1 
+specular 0 0.7 0.7
 popTransform
 pushTransform
 translate -1.5 .8 0.65

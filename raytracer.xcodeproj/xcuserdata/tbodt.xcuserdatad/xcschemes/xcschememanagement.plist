@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Raytrace.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>optimized.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>BB183B711D18C8B80099EA8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BB802D7E1D08E9E80071BBB2</key>
 		<dict>
 			<key>primary</key>

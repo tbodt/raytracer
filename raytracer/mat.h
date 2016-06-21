@@ -14,14 +14,14 @@
 typedef struct {
     union {
         float a[3][3];
-        vec3 r[3];
+//        vec3 r[3];
     };
 } mat3;
 
 typedef struct {
     union {
         float a[4][4];
-        vec4 r[4];
+//        vec4 r[4];
     };
 } mat4;
 
@@ -39,6 +39,41 @@ static inline mat3 mat3f(float a11, float a12, float a13,
     m.a[2][1] = a32;
     m.a[2][2] = a33;
     return m;
+}
+
+static inline mat3 identity3m() {
+    mat3 i;
+    i.a[0][0] = 1;
+    i.a[0][1] = 0;
+    i.a[0][2] = 0;
+    i.a[1][0] = 0;
+    i.a[1][1] = 1;
+    i.a[1][2] = 0;
+    i.a[2][0] = 0;
+    i.a[2][1] = 0;
+    i.a[2][2] = 1;
+    return i;
+}
+
+static inline mat4 identity4m() {
+    mat4 i;
+    i.a[0][0] = 1;
+    i.a[0][1] = 0;
+    i.a[0][2] = 0;
+    i.a[0][3] = 0;
+    i.a[1][0] = 0;
+    i.a[1][1] = 1;
+    i.a[1][2] = 0;
+    i.a[1][3] = 0;
+    i.a[2][0] = 0;
+    i.a[2][1] = 0;
+    i.a[2][2] = 1;
+    i.a[2][3] = 0;
+    i.a[3][0] = 0;
+    i.a[3][1] = 0;
+    i.a[3][2] = 0;
+    i.a[3][3] = 1;
+    return i;
 }
 
 static inline mat4 mat4f(float a11, float a12, float a13, float a14,
@@ -62,6 +97,20 @@ static inline mat4 mat4f(float a11, float a12, float a13, float a14,
     m.a[3][1] = a42;
     m.a[3][2] = a43;
     m.a[3][3] = a44;
+    return m;
+}
+
+static inline mat3 mat3m4(mat4 f) {
+    mat3 m;
+    m.a[0][0] = f.a[0][0];
+    m.a[0][1] = f.a[0][1];
+    m.a[0][2] = f.a[0][2];
+    m.a[1][0] = f.a[1][0];
+    m.a[1][1] = f.a[1][1];
+    m.a[1][2] = f.a[1][2];
+    m.a[2][0] = f.a[2][0];
+    m.a[2][1] = f.a[2][1];
+    m.a[2][2] = f.a[2][2];
     return m;
 }
 
@@ -270,6 +319,41 @@ static inline mat4 inverse4m(mat4 q) {
                  E*idet,F*idet,G*idet,H*idet,
                  I*idet,J*idet,K*idet,L*idet,
                  M*idet,N*idet,O*idet,P*idet);
+}
+
+static inline mat3 transpose3m(mat3 m) {
+    mat3 t;
+    t.a[0][0] = m.a[0][0];
+    t.a[0][1] = m.a[1][0];
+    t.a[0][2] = m.a[2][0];
+    t.a[1][0] = m.a[0][1];
+    t.a[1][1] = m.a[1][1];
+    t.a[1][2] = m.a[2][1];
+    t.a[2][0] = m.a[0][2];
+    t.a[2][1] = m.a[1][2];
+    t.a[2][2] = m.a[2][2];
+    return t;
+}
+
+static inline mat4 transpose4m(mat4 m) {
+    mat4 t;
+    t.a[0][0] = m.a[0][0];
+    t.a[0][1] = m.a[1][0];
+    t.a[0][2] = m.a[2][0];
+    t.a[0][3] = m.a[3][0];
+    t.a[1][0] = m.a[0][1];
+    t.a[1][1] = m.a[1][1];
+    t.a[1][2] = m.a[2][1];
+    t.a[1][3] = m.a[3][1];
+    t.a[2][0] = m.a[0][2];
+    t.a[2][1] = m.a[1][2];
+    t.a[2][2] = m.a[2][2];
+    t.a[2][3] = m.a[3][2];
+    t.a[3][0] = m.a[0][3];
+    t.a[3][1] = m.a[1][3];
+    t.a[3][2] = m.a[2][3];
+    t.a[3][3] = m.a[3][3];
+    return t;
 }
 
 #endif /* mat_h */

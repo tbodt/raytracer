@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0747AC1D18E0F200EBC5BE /* scene7.test in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0747AB1D18E0EB00EBC5BE /* scene7.test */; };
+		BB0747AE1D19DC9600EBC5BE /* specular-table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0747AD1D19D64000EBC5BE /* specular-table.scene */; };
+		BB183B8F1D18C9C20099EA8A /* raytrace.c in Sources */ = {isa = PBXBuildFile; fileRef = BB183B881D18C9C20099EA8A /* raytrace.c */; };
+		BB183B901D18C9C20099EA8A /* scene_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = BB183B891D18C9C20099EA8A /* scene_parser.c */; };
+		BB183B941D18C9F30099EA8A /* RaytracePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB183B931D18C9F30099EA8A /* RaytracePreviewView.m */; };
+		BB537A6E1D160D6600E52086 /* ambient-table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB537A6D1D160D6200E52086 /* ambient-table.scene */; };
+		BB537A701D1616E000E52086 /* diffuse-table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB537A6F1D1616D400E52086 /* diffuse-table.scene */; };
+		BB537A721D178C3C00E52086 /* shadowtest.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB537A711D178AFA00E52086 /* shadowtest.scene */; };
 		BB7627301D10E04400B7679F /* sphere.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB76272F1D10D92F00B7679F /* sphere.scene */; };
 		BB802D831D08E9E80071BBB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB802D821D08E9E80071BBB2 /* main.m */; };
-		BB802D8C1D08EF990071BBB2 /* raytrace.c in Sources */ = {isa = PBXBuildFile; fileRef = BB802D8B1D08EF990071BBB2 /* raytrace.c */; };
-		BBFF91931D0E32F400F2C45A /* scene_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = BBFF91911D0E32F400F2C45A /* scene_parser.c */; };
-		BBFF91951D0E365400F2C45A /* die.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBFF918F1D0E32D300F2C45A /* die.scene */; };
+		BBF06C921D14CCAF007A496B /* die.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBF06C911D14C421007A496B /* die.scene */; };
+		BBF06C931D14CCAF007A496B /* table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBF06C901D14C3FF007A496B /* table.scene */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,29 +28,40 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				BB0747AE1D19DC9600EBC5BE /* specular-table.scene in CopyFiles */,
+				BB0747AC1D18E0F200EBC5BE /* scene7.test in CopyFiles */,
+				BB537A721D178C3C00E52086 /* shadowtest.scene in CopyFiles */,
+				BB537A701D1616E000E52086 /* diffuse-table.scene in CopyFiles */,
+				BB537A6E1D160D6600E52086 /* ambient-table.scene in CopyFiles */,
+				BBF06C921D14CCAF007A496B /* die.scene in CopyFiles */,
+				BBF06C931D14CCAF007A496B /* table.scene in CopyFiles */,
 				BB7627301D10E04400B7679F /* sphere.scene in CopyFiles */,
-				BBFF91951D0E365400F2C45A /* die.scene in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BB37CA841D12357000E78F60 /* vec_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vec_util.h; sourceTree = "<group>"; };
+		BB0747AB1D18E0EB00EBC5BE /* scene7.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene7.test; sourceTree = "<group>"; };
+		BB0747AD1D19D64000EBC5BE /* specular-table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = "specular-table.scene"; sourceTree = "<group>"; };
+		BB183B871D18C9C20099EA8A /* mat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat.h; sourceTree = "<group>"; };
+		BB183B881D18C9C20099EA8A /* raytrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raytrace.c; sourceTree = "<group>"; };
+		BB183B891D18C9C20099EA8A /* scene_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scene_parser.c; sourceTree = "<group>"; };
+		BB183B8A1D18C9C20099EA8A /* vec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec.h; sourceTree = "<group>"; };
+		BB183B8B1D18C9C20099EA8A /* raytrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = raytrace.h; sourceTree = "<group>"; };
+		BB183B8C1D18C9C20099EA8A /* transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
+		BB183B8D1D18C9C20099EA8A /* vec_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_util.h; sourceTree = "<group>"; };
+		BB183B8E1D18C9C20099EA8A /* scene_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene_parser.h; sourceTree = "<group>"; };
+		BB183B921D18C9F30099EA8A /* RaytracePreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaytracePreviewView.h; sourceTree = "<group>"; };
+		BB183B931D18C9F30099EA8A /* RaytracePreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaytracePreviewView.m; sourceTree = "<group>"; };
+		BB537A6D1D160D6200E52086 /* ambient-table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ambient-table.scene"; sourceTree = "<group>"; };
+		BB537A6F1D1616D400E52086 /* diffuse-table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = "diffuse-table.scene"; sourceTree = "<group>"; };
+		BB537A711D178AFA00E52086 /* shadowtest.scene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shadowtest.scene; sourceTree = "<group>"; };
 		BB76272F1D10D92F00B7679F /* sphere.scene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.scene; sourceTree = "<group>"; };
-		BB7627311D10E33400B7679F /* mat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mat.h; sourceTree = "<group>"; };
 		BB802D7F1D08E9E80071BBB2 /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB802D821D08E9E80071BBB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BB802D891D08EA0B0071BBB2 /* vec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vec.h; sourceTree = "<group>"; };
-		BB802D8A1D08EF270071BBB2 /* raytrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = raytrace.h; sourceTree = "<group>"; };
-		BB802D8B1D08EF990071BBB2 /* raytrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raytrace.c; sourceTree = "<group>"; };
-		BBB19F441D123D0B0088CBAF /* linmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = linmath.h; sourceTree = "<group>"; };
-		BBF06C8E1D14C131007A496B /* transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
 		BBF06C901D14C3FF007A496B /* table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = table.scene; sourceTree = "<group>"; };
 		BBF06C911D14C421007A496B /* die.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = die.scene; sourceTree = "<group>"; };
-		BBFF918F1D0E32D300F2C45A /* die.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = die.scene; sourceTree = "<group>"; };
-		BBFF91911D0E32F400F2C45A /* scene_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scene_parser.c; sourceTree = "<group>"; };
-		BBFF91921D0E32F400F2C45A /* scene_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene_parser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +75,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB183B911D18C9C90099EA8A /* math */ = {
+			isa = PBXGroup;
+			children = (
+				BB183B871D18C9C20099EA8A /* mat.h */,
+				BB183B8A1D18C9C20099EA8A /* vec.h */,
+				BB183B8C1D18C9C20099EA8A /* transform.h */,
+				BB183B8D1D18C9C20099EA8A /* vec_util.h */,
+			);
+			name = math;
+			sourceTree = "<group>";
+		};
 		BB802D761D08E9E80071BBB2 = {
 			isa = PBXGroup;
 			children = (
@@ -77,35 +106,29 @@
 			isa = PBXGroup;
 			children = (
 				BB802D821D08E9E80071BBB2 /* main.m */,
-				BBB19F441D123D0B0088CBAF /* linmath.h */,
-				BBFF918F1D0E32D300F2C45A /* die.scene */,
-				BB802D8A1D08EF270071BBB2 /* raytrace.h */,
-				BB802D8B1D08EF990071BBB2 /* raytrace.c */,
-				BBFF91921D0E32F400F2C45A /* scene_parser.h */,
-				BBFF91911D0E32F400F2C45A /* scene_parser.c */,
-				BBF06C8F1D14C139007A496B /* math */,
+				BB183B921D18C9F30099EA8A /* RaytracePreviewView.h */,
+				BB183B931D18C9F30099EA8A /* RaytracePreviewView.m */,
+				BB183B881D18C9C20099EA8A /* raytrace.c */,
+				BB183B8B1D18C9C20099EA8A /* raytrace.h */,
+				BB183B911D18C9C90099EA8A /* math */,
+				BB183B891D18C9C20099EA8A /* scene_parser.c */,
+				BB183B8E1D18C9C20099EA8A /* scene_parser.h */,
 				BBFF91901D0E32D800F2C45A /* scene files */,
 			);
 			path = raytracer;
 			sourceTree = "<group>";
 		};
-		BBF06C8F1D14C139007A496B /* math */ = {
-			isa = PBXGroup;
-			children = (
-				BB802D891D08EA0B0071BBB2 /* vec.h */,
-				BB7627311D10E33400B7679F /* mat.h */,
-				BB37CA841D12357000E78F60 /* vec_util.h */,
-				BBF06C8E1D14C131007A496B /* transform.h */,
-			);
-			name = math;
-			sourceTree = "<group>";
-		};
 		BBFF91901D0E32D800F2C45A /* scene files */ = {
 			isa = PBXGroup;
 			children = (
+				BB0747AB1D18E0EB00EBC5BE /* scene7.test */,
 				BBF06C911D14C421007A496B /* die.scene */,
 				BB76272F1D10D92F00B7679F /* sphere.scene */,
+				BB537A711D178AFA00E52086 /* shadowtest.scene */,
 				BBF06C901D14C3FF007A496B /* table.scene */,
+				BB537A6D1D160D6200E52086 /* ambient-table.scene */,
+				BB537A6F1D1616D400E52086 /* diffuse-table.scene */,
+				BB0747AD1D19D64000EBC5BE /* specular-table.scene */,
 			);
 			name = "scene files";
 			sourceTree = "<group>";
@@ -166,8 +189,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB802D8C1D08EF990071BBB2 /* raytrace.c in Sources */,
-				BBFF91931D0E32F400F2C45A /* scene_parser.c in Sources */,
+				BB183B941D18C9F30099EA8A /* RaytracePreviewView.m in Sources */,
+				BB183B8F1D18C9C20099EA8A /* raytrace.c in Sources */,
+				BB183B901D18C9C20099EA8A /* scene_parser.c in Sources */,
 				BB802D831D08E9E80071BBB2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

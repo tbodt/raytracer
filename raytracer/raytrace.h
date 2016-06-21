@@ -66,7 +66,10 @@ struct object {
     mat4 transform;
     
     vec3 ambient_color;
+    vec3 emissive_color;
     vec3 diffuse_color;
+    vec3 specular_color;
+    float shininess;
     
     intersect_t intersect;
 };
@@ -74,7 +77,7 @@ struct object {
 struct light {
     vec3 position;
     
-    vec3 diffuse_color;
+    vec3 color;
 };
 
 struct intersection {
@@ -82,6 +85,7 @@ struct intersection {
     float distance;
     vec3 normal;
     
+    vec3 origin;
     struct object object;
 };
 

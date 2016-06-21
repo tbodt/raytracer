@@ -2,8 +2,10 @@
 
 size 640 480
 
+point 1 1 3 1 1 1
 # There are 3 camera positions.  Make images for all 3
 
+diffuse 1 0 0
 camera 2 2 2 0 0 0 0 1 0 90
 
 sphere 0 0 0 1
