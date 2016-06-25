@@ -10,9 +10,7 @@
 
 @interface RaytracePreviewView ()
 
-@property NSBitmapImageRep *img;
 @property dispatch_queue_t queue;
-//@property NSOperationQueue *queue;
 @property NSTimer *redrawTimer;
 
 
@@ -52,7 +50,7 @@
                 dispatch_async(self.queue, ^{
                     int nx = scene->width - x - 1;
                     int ny = scene->height - y - 1;
-                    vec4 color_vec = raytrace_pixel((int) nx, (int) ny, scene);
+                    vec4 color_vec = raytrace_pixel(nx, ny, scene);
                     if (color_vec.r > 1)
                         color_vec.r = 1;
                     if (color_vec.g > 1)

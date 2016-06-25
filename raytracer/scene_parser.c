@@ -114,6 +114,12 @@ struct scene *parse_scene(char *file) {
         } else if (strcmp(components[0], "point") == 0) {
             lights[lights_count].position = vec3f(atof(components[1]), atof(components[2]), atof(components[3]));
             lights[lights_count].color = vec3f(atof(components[4]), atof(components[5]), atof(components[6]));
+            lights[lights_count].type = POINT;
+            lights_count++;
+        } else if (strcmp(components[0], "directional") == 0) {
+            lights[lights_count].position = vec3f(atof(components[1]), atof(components[2]), atof(components[3]));
+            lights[lights_count].color = vec3f(atof(components[4]), atof(components[5]), atof(components[6]));
+            lights[lights_count].type = DIRECTIONAL;
             lights_count++;
         } else if (strcmp(components[0], "pushTransform") == 0) {
             transform_stack[transform_sp + 1] = transform_stack[transform_sp];

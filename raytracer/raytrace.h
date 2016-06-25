@@ -75,9 +75,15 @@ struct object {
 };
 
 struct light {
-    vec3 position;
-    
+    union {
+        vec3 position;
+        vec3 direction;
+    };
     vec3 color;
+    enum {
+        POINT,
+        DIRECTIONAL,
+    } type;
 };
 
 struct intersection {

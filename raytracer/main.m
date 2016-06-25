@@ -12,7 +12,7 @@
 #include "scene_parser.h"
 
 int main(int argc, const char * argv[]) {
-    struct scene *s = parse_scene("specular-table.scene");
+    struct scene *s = parse_scene("shadowtest.scene");
     
     @autoreleasepool {
         [NSApplication sharedApplication];
@@ -23,6 +23,8 @@ int main(int argc, const char * argv[]) {
         RaytracePreviewView *view = [[RaytracePreviewView alloc] initWithScene:s];
         window.contentView = view;
         [window makeKeyAndOrderFront:nil];
+        [NSApp activateIgnoringOtherApps:YES];
+        printf("activated\n");
         [NSApp run];
     }
     return 0;

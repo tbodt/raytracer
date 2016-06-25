@@ -69,6 +69,14 @@ static inline vec3 vec3f(float x, float y, float z) {
     return vec;
 }
 
+static inline vec3 vec3v4(vec4 v) {
+    vec3 vec;
+    vec.x = v.x;
+    vec.y = v.y;
+    vec.z = v.z;
+    return vec;
+}
+
 static inline vec4 vec4f(float x, float y, float z, float w) {
     vec4 vec;
     vec.x = x;

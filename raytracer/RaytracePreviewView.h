@@ -14,5 +14,6 @@
 - (instancetype)initWithScene:(struct scene *)scene;
 
 @property struct scene *scene;
+@property NSBitmapImageRep *img;
 
 @end

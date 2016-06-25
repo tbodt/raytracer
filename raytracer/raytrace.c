@@ -13,8 +13,8 @@
 
 static struct ray ray_through_pixel(int x, int y, struct scene *s);
 static struct intersection find_intersection(struct ray r, struct scene *s);
-static vec4 compute_lighting(struct intersection i, struct scene *s);
-static struct ray bump_ray(struct ray r);
+static vec4 compute_lighting(struct intersection i, struct scene *s, unsigned depth);
+static struct ray bump_ray(struct ray r, vec3 direction);
 
 void init_raytracer(struct scene *s) {
     // all these formulas assume the distance from the camera to the plane is 1
@@ -31,7 +31,7 @@ void init_raytracer(struct scene *s) {
 vec4 raytrace_pixel(int x, int y, struct scene *s) {
     struct ray r = ray_through_pixel(x, y, s);
     struct intersection i = find_intersection(r, s);
-    return compute_lighting(i, s);
+    return compute_lighting(i, s, 0);
 }
 
 static struct ray ray_through_pixel(int x, int y, struct scene *s) {
@@ -68,26 +68,39 @@ static struct intersection find_intersection(struct ray r, struct scene *s) {
     return closest;
 }
 
-static vec4 compute_lighting(struct intersection isect, struct scene *s) {
+static vec4 compute_lighting(struct intersection isect, struct scene *s, unsigned depth) {
     vec3 color = vec3f(0, 0, 0);
     
-    if (isect.distance == INFINITY)
+    if (isect.distance == INFINITY || depth >= 5)
         return vec4f(0, 0, 0, 1);
     
     vec3 ambient_color = mul3v3v(s->ambient, isect.object.ambient_color);
     color = add3v(color, ambient_color);
     color = add3v(color, isect.object.emissive_color);
     
+    vec3 viewer_dir = normalize3v(sub3v(isect.origin, isect.point));
+    
     for (int i = 0; i < s->lights_count; i++) {
         struct light light = s->lights[i];
         
-        vec3 light_dir = normalize3v(sub3v(light.position, isect.point));
-        struct ray shadow_ray;
-        shadow_ray.origin = isect.point;
-        shadow_ray.direction = light_dir;
-        struct intersection shadow_intersection = find_intersection(bump_ray(shadow_ray), s);
-        if (shadow_intersection.distance != INFINITY)
-            continue;
+        vec3 light_dir;
+        float light_distance;
+        if (light.type == POINT) {
+            light_dir = normalize3v(sub3v(light.position, isect.point));
+            light_distance = length3v(sub3v(light.position, isect.point));
+        } else {
+            light_dir = normalize3v(light.direction);
+            light_distance = INFINITY;
+        }
+        
+        if (depth == 0) {
+            struct ray shadow_ray;
+            shadow_ray.origin = isect.point;
+            shadow_ray.direction = light_dir;
+            struct intersection shadow_intersection = find_intersection(bump_ray(shadow_ray, isect.normal), s);
+            if (shadow_intersection.distance < light_distance)
+                continue;
+        }
         
         // diffuse
         float diffuse_num = fmaxf(dot3v(isect.normal, light_dir), 0);
@@ -95,12 +108,20 @@ static vec4 compute_lighting(struct intersection isect, struct scene *s) {
         color = add3v(color, diffuse_color);
         
         // specular
-        vec3 viewer_dir = normalize3v(sub3v(isect.origin, isect.point));
         vec3 half = normalize3v(div3vf(add3v(light_dir, viewer_dir), 2));
         float specular_num = powf(fmaxf(dot3v(isect.normal, half), 0), isect.object.shininess);
-//        printf("%f\n", specular_num);
         vec3 specular_color = mulf3v(specular_num, mul3v3v(light.color, isect.object.specular_color));
         color = add3v(color, specular_color);
+    }
+    
+    // reflection
+    if (isect.object.specular_color.r != 0 || isect.object.specular_color.g != 0 || isect.object.specular_color.b != 0) {
+        struct ray reflect_ray;
+        reflect_ray.origin = isect.point;
+        reflect_ray.direction = normalize3v(sub3v(mulf3v(2*dot3v(viewer_dir, isect.normal), isect.normal), viewer_dir));
+        struct intersection reflect_intersection = find_intersection(bump_ray(reflect_ray, isect.normal), s);
+        vec3 reflect_color = mul3v3v(vec3v4(compute_lighting(reflect_intersection, s, depth + 1)), isect.object.specular_color);
+        color = add3v(color, reflect_color);
     }
     
     return vec4v3f(color, 1);
@@ -181,8 +202,7 @@ struct intersection intersect_triangle(struct object obj, struct ray r, struct s
     return i;
 }
 
-struct ray bump_ray(struct ray r) {
-    struct ray rb = r;
-    rb.origin = add3v(rb.origin, mul3vf(rb.direction, 0.001));
-    return rb;
+struct ray bump_ray(struct ray r, vec3 direction) {
+    r.origin = add3v(r.origin, mul3vf(direction, 0.01));
+    return r;
 }

@@ -37,18 +37,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
-            condition = "specular_num &gt; 0.9"
             continueAfterRunningActions = "No"
-            filePath = "raytracer/raytrace.c"
-            timestampString = "488234805.034386"
+            filePath = "raytracer/RaytracePreviewView.m"
+            timestampString = "488243324.685098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "compute_lighting()"
-            landmarkType = "7">
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-initWithScene:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB0747AC1D18E0F200EBC5BE /* scene7.test in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0747AB1D18E0EB00EBC5BE /* scene7.test */; };
+		BB0747AC1D18E0F200EBC5BE /* dragon.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0747AB1D18E0EB00EBC5BE /* dragon.scene */; };
 		BB0747AE1D19DC9600EBC5BE /* specular-table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0747AD1D19D64000EBC5BE /* specular-table.scene */; };
 		BB183B8F1D18C9C20099EA8A /* raytrace.c in Sources */ = {isa = PBXBuildFile; fileRef = BB183B881D18C9C20099EA8A /* raytrace.c */; };
 		BB183B901D18C9C20099EA8A /* scene_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = BB183B891D18C9C20099EA8A /* scene_parser.c */; };
 		BB183B941D18C9F30099EA8A /* RaytracePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB183B931D18C9F30099EA8A /* RaytracePreviewView.m */; };
+		BB4943B91D1C7EA900A6607B /* spheres.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB4943B81D1C7E9800A6607B /* spheres.scene */; };
+		BB4943BB1D1C817B00A6607B /* everything.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB4943BA1D1C814B00A6607B /* everything.scene */; };
 		BB537A6E1D160D6600E52086 /* ambient-table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB537A6D1D160D6200E52086 /* ambient-table.scene */; };
 		BB537A701D1616E000E52086 /* diffuse-table.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB537A6F1D1616D400E52086 /* diffuse-table.scene */; };
 		BB537A721D178C3C00E52086 /* shadowtest.scene in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB537A711D178AFA00E52086 /* shadowtest.scene */; };
@@ -28,8 +30,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				BB4943BB1D1C817B00A6607B /* everything.scene in CopyFiles */,
+				BB4943B91D1C7EA900A6607B /* spheres.scene in CopyFiles */,
 				BB0747AE1D19DC9600EBC5BE /* specular-table.scene in CopyFiles */,
-				BB0747AC1D18E0F200EBC5BE /* scene7.test in CopyFiles */,
+				BB0747AC1D18E0F200EBC5BE /* dragon.scene in CopyFiles */,
 				BB537A721D178C3C00E52086 /* shadowtest.scene in CopyFiles */,
 				BB537A701D1616E000E52086 /* diffuse-table.scene in CopyFiles */,
 				BB537A6E1D160D6600E52086 /* ambient-table.scene in CopyFiles */,
@@ -42,7 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BB0747AB1D18E0EB00EBC5BE /* scene7.test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene7.test; sourceTree = "<group>"; };
+		BB0747AB1D18E0EB00EBC5BE /* dragon.scene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.scene; sourceTree = "<group>"; };
 		BB0747AD1D19D64000EBC5BE /* specular-table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = "specular-table.scene"; sourceTree = "<group>"; };
 		BB183B871D18C9C20099EA8A /* mat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat.h; sourceTree = "<group>"; };
 		BB183B881D18C9C20099EA8A /* raytrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raytrace.c; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 		BB183B8E1D18C9C20099EA8A /* scene_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene_parser.h; sourceTree = "<group>"; };
 		BB183B921D18C9F30099EA8A /* RaytracePreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaytracePreviewView.h; sourceTree = "<group>"; };
 		BB183B931D18C9F30099EA8A /* RaytracePreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaytracePreviewView.m; sourceTree = "<group>"; };
+		BB4943B81D1C7E9800A6607B /* spheres.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = spheres.scene; sourceTree = "<group>"; };
+		BB4943BA1D1C814B00A6607B /* everything.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = everything.scene; sourceTree = "<group>"; };
 		BB537A6D1D160D6200E52086 /* ambient-table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ambient-table.scene"; sourceTree = "<group>"; };
 		BB537A6F1D1616D400E52086 /* diffuse-table.scene */ = {isa = PBXFileReference; lastKnownFileType = text; path = "diffuse-table.scene"; sourceTree = "<group>"; };
 		BB537A711D178AFA00E52086 /* shadowtest.scene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shadowtest.scene; sourceTree = "<group>"; };
@@ -121,7 +127,9 @@
 		BBFF91901D0E32D800F2C45A /* scene files */ = {
 			isa = PBXGroup;
 			children = (
-				BB0747AB1D18E0EB00EBC5BE /* scene7.test */,
+				BB4943BA1D1C814B00A6607B /* everything.scene */,
+				BB4943B81D1C7E9800A6607B /* spheres.scene */,
+				BB0747AB1D18E0EB00EBC5BE /* dragon.scene */,
 				BBF06C911D14C421007A496B /* die.scene */,
 				BB76272F1D10D92F00B7679F /* sphere.scene */,
 				BB537A711D178AFA00E52086 /* shadowtest.scene */,
